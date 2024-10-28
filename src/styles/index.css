@@ -1,7 +1,14 @@
+.trash >* {
+    visibility: hidden;
+}
 
-/* 
+.trash:hover >* {
+    visibility: visible;
+}
 
-    You can write your own styles here...
+
+
+    /* You can write your own styles here...
     
     
     ...Or you can use the import command to include 
@@ -9,4 +16,4 @@
     
     import 'relative/path/to/stylesheet.scss';
 
-*/
+*/ 

@@ -61,7 +61,7 @@ const Home = () => {
         <div className="card">
           {lisTasks.length <= 0 ? (
             <p className="text-center text-secondary newFont fw-bold">
-              Sin tareas 
+              Sin tareas
             </p>
           ) : (
             <p className="text-center text-secondary newFont fw-bold">{`Te faltan ${lisTasks.length} tareas por terminar`}</p>
@@ -69,16 +69,16 @@ const Home = () => {
           <ul className="list-group list-group-flush p-4 d-flex justify-content-between">
             {lisTasks.map((item, index) => {
               return (
-                <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center justify-content-between" key={index}>
                   <li className="list-group-item newFont w-100" key={index}>
                     {item.label}
                   </li>
-                  <div>
-                    <button type="button" onClick={() => deleteTask(index)}>
-                      <span>
-					             <i className="fa-solid fa-trash-can py-2"></i>
-                      </span>
-                    </button>
+                  <div className="trash bg-light  justify-content-end px-2 py-1">
+                    <span className="" onClick={() => deleteTask(index)} >
+
+                      <i className="fa-solid fa-trash-can py-2 " id="addon-wrapping"></i>
+
+                    </span>
                   </div>
                 </div>
               );
