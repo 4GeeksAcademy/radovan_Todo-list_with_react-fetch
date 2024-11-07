@@ -44,6 +44,9 @@ const Home = () => {
 
     })
       .then(resp => {
+        if (resp.status == 201) {
+          getData(name)
+        }
         console.log(resp.ok); // Será true si la respuesta es exitosa
         console.log(resp.status); // El código de estado 200, 300, 400, etc.
         console.log(resp.text()); // Intentará devolver el resultado exacto como string
@@ -59,6 +62,30 @@ const Home = () => {
       });
   }
 
+  // BORRAR USERNAME
+
+  function clearUser(userName) {
+    fetch(apiUrl + '/users/' + userName, {
+      method: "DELETE",
+
+
+    })
+      .then(resp => {
+        console.log(resp.ok); // Será true si la respuesta es exitosa
+        console.log(resp.status); // El código de estado 200, 300, 400, etc.
+        if (resp.status == 204) {
+          createUser(userName)
+
+
+        }
+
+      })
+
+      .catch(error => {
+        // Manejo de errores
+        console.log(error);
+      });
+  }
   // RECIBIR USER
 
   function getData(name) {
@@ -108,7 +135,7 @@ const Home = () => {
       })
       .then(data => {
         if (data) {
-          setLisTasks([...lisTasks, data])
+          getData(name)
           setTask(initialState);
         }
         // Aquí es donde debe comenzar tu código después de que finalice la búsqueda
@@ -122,6 +149,7 @@ const Home = () => {
   useEffect(() => {
     getData(userName)
   }, [userName])
+
 
   // BORRAR TAREAS DE LA API
 
@@ -199,6 +227,7 @@ const Home = () => {
               );
             })}
           </ul>
+          <button type="button" className="btn btn-primary" onClick={() => clearUser("radovan")} >Borrar todas las tareas</button>
         </div>
       </div>
     </div>
